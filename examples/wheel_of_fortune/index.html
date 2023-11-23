@@ -29,6 +29,7 @@
         <title>HTML5 Canvas Winning Wheel</title>
         <link rel="stylesheet" href="main.css" type="text/css" />
         <script type="text/javascript" src="../../Winwheel.js"></script>
+        <script type="text/javascript" src="../../color-gradient.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     </head>
     <body>
@@ -145,6 +146,15 @@
                 {'fillStyle':'#ff0000', 'text': 'VILLANOVA CRUZ, JAUME'},
                 {'fillStyle':'#ff0000', 'text': 'GARCIA FRAGOSO, ORIOL'},
             ];
+
+            const gradientArray = new Gradient()
+                .setColorGradient("#FF0000", "#FFFF00", "#00FF00", "#00FFFF", "#0000FF", "#FF00FF", "FF0000")
+                .setMidpoint(segments_.length)
+                .getColors();
+            
+            for (i=0; i<segments_.length; i++) {
+                segments_[i]['fillStyle'] = gradientArray[i];
+            }
 
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
