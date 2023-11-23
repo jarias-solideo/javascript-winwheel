@@ -1,3 +1,11 @@
+# JA
+Me baso en examples/wheel_of_fortune y la evoluciono para nuestras necesidades (Sorteo Navidad empleados Solideo 2023)
+
+Para ejecutarlo es suficiente con abrir xxxxxxxx/examples/wheel_of_fortune/index.html en un navegador
+# Fin JA
+
+
+
 # javascript-winwheel
 Create spinning prize wheels on HTML canvas with Winwheel.js
 
