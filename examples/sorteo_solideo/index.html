@@ -27,51 +27,40 @@
 <html>
     <head>
         <title>HTML5 Canvas Winning Wheel</title>
-        <link rel="stylesheet" href="main.css" type="text/css" />
+        <!--link rel="stylesheet" href="main.css" type="text/css" /-->
         <script type="text/javascript" src="../../Winwheel.js"></script>
-        <script type="text/javascript" src="../../color-gradient.js"></script>
+        <script type="text/javascript" src="./color-gradient.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     </head>
     <body>
-        <div align="center">
-            <br />
-            <br />
-            <br />
-            <h1>Sorteo Navidad 2023 - Acciona Energía</h1>
-            <br />
-            <table cellpadding="0" cellspacing="0" border="0">
-            <tr>
-                <td>
-                    <div class="power_controls">
-                        <br />
-                        <br />
-                        <table class="power" cellpadding="10" cellspacing="0">
-                            <tr>
-                                <th align="center">Power</th>
-                            </tr>
-                            <tr>
-                                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
-                            </tr>
-                            <tr>
-                                <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
-                            </tr>
-                            <tr>
-                                <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
-                            </tr>
-                        </table>
-                        <br />
-                        <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
-                        <br /><br />
-                        &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
-                    </div>
-                </td>
-                <td width="820" height="820" class="the_wheel" align="center" valign="center">
-                    <canvas id="canvas" width="800" height="800">
-                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                    </canvas>
-                </td>
-            </tr>
-        </table>
+        <div style="display:flex; width:1900px; height: 1060px; background-image: url(./wheel_back.png);">
+            <div style="padding-left:400px; padding-top: 110px;">
+                <canvas id="canvas" width="900px" height="900px"></canvas>
+            </div>
+            <div id="w1" style="font-size: 19px; background-color: red; color: white; width: 400px; height: 20px; margin-top:320px; padding: 20px; text-align: center; border-radius: 0.5rem;">-</div>
+            <div class="power_controls">
+                <br />
+                <br />
+                <table class="power" cellpadding="10" cellspacing="0">
+                    <tr>
+                        <th align="center">Power</th>
+                    </tr>
+                    <tr>
+                        <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
+                    </tr>
+                    <tr>
+                        <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
+                    </tr>
+                </table>
+                <br />
+                <img id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" />
+                <br /><br />
+                &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
+            </div>
+
         <script>
             // Crear segmentos, uno por cada empleado.
             let segments_ = [
@@ -205,10 +194,10 @@
                 {'fillStyle':'#ff0000', 'text': 'HENARES GALINDO, ARNAU'},
                 {'fillStyle':'#ff0000', 'text': 'VILLANOVA CRUZ, JAUME'},
                 {'fillStyle':'#ff0000', 'text': 'GARCIA FRAGOSO, ORIOL'},
-            ];
+         ];
 
             const gradientArray = new Gradient()
-                .setColorGradient("#cc0000", "#cccc00", "#00cc00", "#00cccc", "#0000cc", "#cc00cc", "cc0000")
+                .setColorGradient("#ff0000", "#6e0000", "#ff0000", "#6e0000", "#ff0000")
                 .setMidpoint(segments_.length)
                 .getColors();
             
@@ -218,9 +207,9 @@
 
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
-                'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
+                'outerRadius'     : 240,        // Set outer radius so wheel fits inside the background.
                 'innerRadius'     : 40,         // Make wheel hollow so segments don't go all way to center.
-                'textFontSize'    : 5,         // Set default font size for the segments.
+                'textFontSize'    : 4,         // Set default font size for the segments.
                 'textOrientation' : 'horizontal', // Make text vertial so goes down from the outside of wheel.
                 'textAlignment'   : 'outer',    // Align text to outside of wheel.
                 'numSegments'     : segments_.length,         // Specify number of segments.
@@ -237,15 +226,15 @@
                 'pins' :				// Turn pins on.
                 {
                     'number'     : segments_.length,
-                    'fillStyle'  : 'silver',
-                    'outerRadius': 4,
+                    'fillStyle'  : 'white',
+                    'outerRadius': 2,
                 },
-                'strokeStyle': 'white',
+                'strokeStyle': '#ff0000',
                 'textFillStyle': 'white',
                 'scaleFactor': 1.8,
-                'centerX': 220,
-                'centerY': 220,
-                'pointerAngle': 305,
+                'centerX': 250,
+                'centerY': 250,
+                'pointerAngle': 45,
             });
 
             // Loads the tick audio sound in to an audio object.
@@ -254,6 +243,10 @@
             // This function is called when the sound is to be played.
             function playSound()
             {
+                indicatedSegment = winwheelToDrawDuringAnimation.getIndicatedSegment()
+                document.getElementById('w1').innerHTML = indicatedSegment.text;
+                document.getElementById('w1').style.backgroundColor = indicatedSegment.fillStyle;
+
                 // Stop and rewind the sound if it already happens to be playing.
                 audio.pause();
                 audio.currentTime = 0;
@@ -351,6 +344,7 @@
             // -------------------------------------------------------
             function alertPrize(indicatedSegment)
             {
+                /*
                 // Just alert to the user what happened.
                 // In a real project probably want to do something more interesting than this with the result.
                 if (indicatedSegment.text == 'LOOSE TURN') {
@@ -360,6 +354,8 @@
                 } else {
                     alert("You have won " + indicatedSegment.text);
                 }
+                */
+                document.getElementById('w1').innerHTML = indicatedSegment.text;
             }
         </script>
     </body>
