@@ -33,7 +33,7 @@
         <script type="text/javascript" src="./color-gradient.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
         <script type="text/javascript" src="./participants.js"></script>
-    </head>
+        <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.2/tsparticles.confetti.bundle.min.js"></script>    </head>
     <body>
         <div style="display:flex; width:1900px; height: 1060px; background-image: url(./wheel_back.png);">
             <div style="padding-left:397px; padding-top: 106px;">
@@ -47,7 +47,7 @@
                 <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
             </div>
             <div class="power_controls" style="margin-left:700px; margin-top: 1000px;">
-                <a href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
+                <a id="play_again" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
             </div>
         </div>
         <script>
@@ -216,6 +216,38 @@
                 }
                 */
                 document.getElementById('w1').innerHTML = indicatedSegment.text;
+
+                // Confetti
+                const defaults = {
+                    spread: 360,
+                    ticks: 50,
+                    gravity: 0,
+                    decay: 0.94,
+                    startVelocity: 30,
+                    origin: { x: 0.8, y: 0.3},
+                    shapes: ["star"],
+                    colors: ["FFE400", "FFBD00", "E89400", "FFCA6C", "FDFFB8"],
+                };
+
+                function shoot() {
+                    confetti({
+                        ...defaults,
+                        particleCount: 40,
+                        scalar: 1.2,
+                        shapes: ["star"],
+                    });
+
+                    confetti({
+                        ...defaults,
+                        particleCount: 10,
+                        scalar: 0.75,
+                        shapes: ["circle"],
+                    });
+                }
+
+                setTimeout(shoot, 0);
+                setTimeout(shoot, 100);
+                setTimeout(shoot, 200);
             }
         </script>
     </body>
