@@ -34,20 +34,18 @@
     </head>
     <body>
         <div style="display:flex; width:1900px; height: 1060px; background-image: url(./wheel_back.png);">
-            <div style="padding-left:400px; padding-top: 110px;">
+            <div style="padding-left:397px; padding-top: 106px;">
                 <canvas id="canvas" width="900px" height="900px"></canvas>
             </div>
             <div id="w1" style="font-size: 19px; background-color: red; color: white; width: 400px; height: 20px; margin-top:320px; padding: 20px; text-align: center; border-radius: 0.5rem;">-</div>
             <div style="margin-top: 175px; margin-left:-600px">
                 <img src="./puntero.png">
             </div>
-            <div class="power_controls" style="margin-top: 500px; margin-left:-451px">
+            <div class="power_controls" style="margin-top: 497px; margin-left:-449px; cursor:pointer">
                 <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
                 <a href="#" onClick="resetWheel(); return false;">Play Again</a>
             </div>
             <div class="power_controls" style="margin-left:500px">
-                <br />
-                <br />
                 <table class="power" cellpadding="10" cellspacing="0">
                     <tr>
                         <th align="center">Power</th>
@@ -62,7 +60,7 @@
                         <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
                     </tr>
                 </table>
-                <br />
+<br />
                 <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
                 <br /><br />
                 &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
@@ -204,7 +202,11 @@
          ];
 
             const gradientArray = new Gradient()
+                ///.setColorGradient("#cc0000", "#cccc00", "#00cc00", "#00cccc", "#0000cc", "#cc00cc", "cc0000")
                 .setColorGradient("#ff0000", "#6e0000", "#ff0000", "#6e0000", "#ff0000")
+                //.setColorGradient("#ff0000", "#6e0000", "#ff0000", "#6e0000", "#ff0000", "#6e0000", "#ff0000")
+                //.setColorGradient("#ff0000", "#009d00", "#ff0000", "#009d00", "#ff0000", "#009d00", "#ff0000")
+                //.setColorGradient("#ff0000", "#009d00", "#ff0000", "#009d00", "#ff0000")
                 .setMidpoint(segments_.length)
                 .getColors();
             
@@ -315,6 +317,8 @@
                         theWheel.animation.spins = 6;
                     } else if (wheelPower == 3) {
                         theWheel.animation.spins = 10;
+                    } else {
+                        theWheel.animation.spins = 5;
                     }
 
                     // Disable the spin button so can't click again while wheel is spinning.
