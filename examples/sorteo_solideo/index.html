@@ -48,7 +48,6 @@
             </div>
             <div class="power_controls" style="margin-left:800px; margin-top: 1000px;">
                 <button id="play_again" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</button>
-                <!--a id="play_again" href="#" onClick="rotateCanvas();">Rotate canvas</!--a-->
             </div>
         </div>
         <script>
@@ -198,6 +197,8 @@
                 theWheel.draw();                // Call draw to render changes to the wheel.
                
                 wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+
+                document.getElementById('w1').innerHTML = "-"
             }
 
             // -------------------------------------------------------
