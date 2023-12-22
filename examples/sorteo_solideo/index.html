@@ -39,19 +39,20 @@
             <div style="padding-left:397px; padding-top: 106px;">
                 <canvas id="canvas" width="900px" height="900px"></canvas>
             </div>
-            <div id="w1" style="font-size: 19px; background-color: red; color: white; width: 400px; height: 20px; margin-top:320px; padding: 20px; text-align: center; border-radius: 0.5rem;">-</div>
+            <div id="w1" style="font-size: 18px; background-color: red; color: white; width: 400px; height: 20px; margin-top:320px; padding: 20px; text-align: center; border-radius: 0.5rem;">-</div>
             <div style="margin-top: 175px; margin-left:-600px">
                 <img src="./puntero.png">
             </div>
             <div class="power_controls" style="margin-top: 497px; margin-left:-449px; cursor:pointer">
                 <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
             </div>
-            <div class="power_controls" style="margin-left:700px; margin-top: 1000px;">
-                <a id="play_again" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</a>
+            <div class="power_controls" style="margin-left:800px; margin-top: 1000px;">
+                <button id="play_again" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</button>
+                <!--a id="play_again" href="#" onClick="rotateCanvas();">Rotate canvas</!--a-->
             </div>
         </div>
         <script>
-            // Crear segmentos, uno por cada empleado, del estilo [{'text': 'José Antonio Arias'}, {'text': 'Daniel Conde'}]
+                        // Crear segmentos, uno por cada empleado, del estilo [{'text': 'José Antonio Arias'}, {'text': 'Daniel Conde'}]
             let segments_ = participants;
 
             const gradientArray = new Gradient()
@@ -215,7 +216,7 @@
                     alert("You have won " + indicatedSegment.text);
                 }
                 */
-                document.getElementById('w1').innerHTML = indicatedSegment.text;
+                //document.getElementById('w1').innerHTML = indicatedSegment.text;
 
                 // Confetti
                 const defaults = {
