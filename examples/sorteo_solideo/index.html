@@ -44,7 +44,7 @@
                 <img src="./puntero.png">
             </div>
             <div class="power_controls" style="margin-top: 497px; margin-left:-449px; cursor:pointer">
-                <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" />
+                <img id="spin_button" src="spin_on.png" alt="Spin" onClick="startSpin();" onmousedown="startSpinInit();" onmouseup="startSpinEnd();" />
             </div>
             <div class="power_controls" style="margin-left:800px; margin-top: 1000px;">
                 <button id="play_again" href="#" onClick="resetWheel(); return false;">Jugar de nuevo</button>
@@ -80,7 +80,7 @@
                 {
                     'type'     : 'spinToStop',
                     'duration' : 15,    // Duration in seconds.
-                    'spins'    : 5,     // Default number of complete spins.
+                    'spins'    : 4,     // Default number of complete spins.
                     'callbackFinished' : alertPrize,
                     'callbackSound'    : playSound,   // Function to call when the tick sound is to be triggered.
                     'soundTrigger'     : 'pin'        // Specify pins are to trigger the sound, the other option is 'segment'.
@@ -155,11 +155,26 @@
                 }
             }
 
+            let wheelPowerTimeCount = Date.now();
+            function startSpinInit()
+            {
+                wheelPowerTimeCount = Date.now();
+            }
+            function startSpinEnd()
+            {
+                wheelPowerTimeCount = Date.now() - wheelPowerTimeCount;
+            }
+
             // -------------------------------------------------------
             // Click handler for spin button.
             // -------------------------------------------------------
             function startSpin()
             {
+                if (wheelPowerTimeCount > 500) {
+                    theWheel.animation.spins = 5 + Math.floor(wheelPowerTimeCount / 500);
+                    theWheel.animation.duration = 15 + Math.floor(wheelPowerTimeCount / 500);
+                }
+
                 // Ensure that spinning can't be clicked again while already running.
                 if (wheelSpinning == false) {
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
@@ -198,7 +213,9 @@
                
                 wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
 
-                document.getElementById('w1').innerHTML = "-"
+                document.getElementById('w1').innerHTML = "-";
+                wheelPower = 0;
+                wheelSpinning = false;
             }
 
             // -------------------------------------------------------
