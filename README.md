@@ -1,7 +1,7 @@
 # JA
 Me baso en examples/wheel_of_fortune y la evoluciono para nuestras necesidades (Sorteo Navidad empleados Solideo 2023)
 
-
+Para ejecutar es suficiente con abrir en un navegador el fichero /examples/sorteo_solideo/index.html.
 
 
 
