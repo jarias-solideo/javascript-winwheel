@@ -1,6 +1,14 @@
 # JA
 Me baso en examples/wheel_of_fortune y la evoluciono para nuestras necesidades (Sorteo Navidad empleados Solideo 2023)
 
+
+
+
+
+
+Empíricamente hemos visto que en un navegador Chrome en un MacAir funciona mucho más fluido que en un PC i7. En el i7 se atranca por el hecho de tener que dibujar tantos textos y combinado con rotar el canvas. 
+
+
 Para ejecutarlo es suficiente con abrir xxxxxxxx/examples/wheel_of_fortune/index.html en un navegador
 # Fin JA
 
